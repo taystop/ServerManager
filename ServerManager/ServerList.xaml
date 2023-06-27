@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ServerManager.ServerList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ServerManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280">
+    <Grid x:Name="DesignGrid" Background="LavenderBlush">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox>
+            <Label>Server ID</Label>
+        </Viewbox>
+        <Viewbox Grid.Column="1">
+            <Label>Server Name</Label>
+        </Viewbox>
+        <Viewbox Grid.Column="2">
+            <Label>Server Path</Label>
+        </Viewbox>
+        <ListBox Name="IDList" Grid.Row="1" SelectionMode="Single"/>
+        <ListBox Name="NameList" Grid.Row="1" Grid.Column="1" SelectionMode="Single"/>
+        <ListBox Name="PathList" Grid.Row="1" Grid.Column="2" SelectionMode="Single"/>
+    </Grid>
+</UserControl>
