@@ -24,12 +24,18 @@ namespace ServerManager
     public partial class ServerList : UserControl
     {
         //Default Constructor
-        public ServerList()
+        public ServerList(MainWindow window, Servers servers)
         {
             InitializeComponent();
-            this.servers = (List<ServerFile>)this.DataContext;
-            if(servers != null)
+            this.DataContext = servers;
+            this.window = window;
+            if(this.DataContext != null)
             {
+                ser = (Servers)this.DataContext;
+                foreach(var item in ser.ServerList)
+                {
+                    server.Add(item);
+                }
                 setIds();
                 setNames();
                 setPaths();
@@ -40,16 +46,19 @@ namespace ServerManager
             }
         }
 
+        private Servers ser;
         //Private variable holding all server data
-        private List<ServerFile> servers;
+        private List<ServerFile> server = new List<ServerFile>();
+
+        private MainWindow window;
 
         //Adds all server ids to the ID listbox
         private void setIds()
         {
-            for(int i = 0; i < servers.Count; i++)
+            for(int i = 0; i < server.Count; i++)
             {
                 ListBoxItem item = new ListBoxItem();
-                item.Content = servers[i].ID;
+                item.Content = server[i].ID;
                 IDList.Items.Add(item);
             }
         }
@@ -57,10 +66,10 @@ namespace ServerManager
         //Adds all server names to the Name listbox
         private void setNames()
         {
-            for(int i =0; i < servers.Count;i++)
+            for(int i =0; i < server.Count;i++)
             {
                 ListBoxItem item = new ListBoxItem();
-                item.Content = servers[i].Name;
+                item.Content = server[i].Name;
                 NameList.Items.Add(item);
             }
         }
@@ -68,14 +77,15 @@ namespace ServerManager
         //Adds all server paths to the Path listbox
         private void setPaths()
         {
-            for(int i = 0; i < servers.Count;i++)
+            for(int i = 0; i < server.Count;i++)
             {
                 ListBoxItem item = new ListBoxItem();
-                item.Content = servers[i].Path;
+                item.Content = server[i].Path;
                 PathList.Items.Add(item);
             }
         }
 
+        //Opens dialog to help user find saved server list file
         private void loadServerFiles()
         {
             string temp = "";
@@ -83,7 +93,7 @@ namespace ServerManager
             if(MessageBox.Show("Would you like to load Server List?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 OpenFileDialog ofd = new OpenFileDialog();
-                ofd.InitialDirectory = "c:\\";
+                ofd.InitialDirectory = "c:\\tmp";
                 ofd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 ofd.Multiselect = false;
 
@@ -99,10 +109,15 @@ namespace ServerManager
                     {
                         string[] serv = s.Split(":");
                         ServerFile file = new ServerFile(serv[1], serv[0]);
-                        this.servers.Add(file);
+                        this.server.Add(file);
                     }
                 }
             }
+        }
+
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            window.StartPage();
         }
     }
 }

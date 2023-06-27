@@ -27,5 +27,10 @@ namespace ServerManager.Models
 
             return comp;
         }
+
+        public void AddServer(ServerFile server)
+        {
+            servers.Add(server);
+        }
     }
 }

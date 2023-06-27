@@ -26,7 +26,14 @@
         <Viewbox Grid.Column="2">
             <Label>Server Path</Label>
         </Viewbox>
-        <ListBox Name="IDList" Grid.Row="1" SelectionMode="Single"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <ListBox Name="IDList" SelectionMode="Single"/>
+            <Button FontSize="30" Name="HomeBtn" Grid.Row="1" Click="HomeBtn_Click">Home</Button>
+        </Grid>
         <ListBox Name="NameList" Grid.Row="1" Grid.Column="1" SelectionMode="Single"/>
         <ListBox Name="PathList" Grid.Row="1" Grid.Column="2" SelectionMode="Single"/>
     </Grid>

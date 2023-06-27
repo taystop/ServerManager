@@ -8,5 +8,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
     <Grid Name="Main">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="Buttons" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="AddServerBtn" Click="AddServerBtn_Click">Add Server</Button>
+            <Button Name="RemoveServerBtn" Grid.Column="1" Click="RemoveServerBtn_Click" >Remove Server</Button>
+            <Button Name="ViewServersBtn" Grid.Column="2" Click="ViewServersBtn_Click">View Servers</Button>
+        </Grid>
     </Grid>
 </Window>
